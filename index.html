@@ -3,183 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎄 Générateur de Playlists de Noël | Spotify & Deezer</title>
-    <meta name="description" content="Créez la playlist parfaite pour vos fêtes de Noël. Choisissez votre ambiance et découvrez les meilleures playlists Spotify et Deezer.">
-    <meta name="keywords" content="playlist noël, musique noël, spotify, deezer, christmas, générateur playlist">
-    <meta name="author" content="Christmas Playlist Generator">
+    <title>Générateur de Playlists de Noël</title>
+    <meta name="description" content="Trouvez la playlist parfaite pour vos fêtes de Noël sur Spotify et Deezer. Générateur intelligent avec différentes ambiances.">
+    <meta name="keywords" content="playlist, noël, christmas, spotify, deezer, musique, fêtes, générateur">
+    
+    <!-- Open Graph pour les réseaux sociaux -->
+    <meta property="og:title" content="Générateur de Playlists de Noël">
+    <meta property="og:description" content="Trouvez la playlist parfaite pour vos fêtes ✨">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=1200&h=630&fit=crop">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Générateur de Playlists de Noël">
+    <meta name="twitter:description" content="Trouvez la playlist parfaite pour vos fêtes ✨">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgdmlld0JveD0iMCAwIDY0IDY0Ij48dGV4dCB5PSI1MCIgZm9udC1zaXplPSI1MCI+🎄</dGV4dD48L3N2Zz4K">
+    
+    <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="preload" as="font" crossorigin>
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-VOTRE-ID-ICI"
+     crossorigin="anonymous"></script>
 </head>
 <body>
-    <!-- Snowflakes animation -->
-    <div class="snowflakes" aria-hidden="true">
+    <div class="snow-container">
+        <div class="snowflake">❄</div>
         <div class="snowflake">❅</div>
         <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
-        <div class="snowflake">❅</div>
-        <div class="snowflake">❆</div>
+        <div class="snowflake">❄</div>
         <div class="snowflake">❅</div>
         <div class="snowflake">❆</div>
     </div>
 
     <div class="container">
         <!-- Header -->
-        <header class="header">
-            <div class="santa-hat">🎅</div>
-            <h1 class="title">
-                <span class="title-emoji">🎄</span>
-                Générateur de Playlists de Noël
-                <span class="title-emoji">🎁</span>
-            </h1>
-            <p class="subtitle">Trouvez la playlist parfaite pour vos fêtes ✨</p>
+        <header class="hero">
+            <div class="hero-content">
+                <div class="hero-icon">🎄</div>
+                <h1>Générateur de Playlists de Noël</h1>
+                <p class="subtitle">Trouvez la playlist parfaite pour vos fêtes ✨</p>
+            </div>
         </header>
 
-        <!-- AdSense Banner Top -->
-        <div class="adsense-banner top-banner">
-            <div class="adsense-placeholder">
-                <!-- Google AdSense Code Here -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXXXX"
-                     data-ad-slot="XXXXXXXXXX"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-                <p style="text-align: center; color: #999; font-size: 12px;">Publicité</p>
+        <!-- Sélecteur de langue et région -->
+        <div class="language-region-selector">
+            <div class="selector-group language-selector">
+                <label>🌍 Langue :</label>
+                <select id="languageSelect">
+                    <option value="fr">🇫🇷 Français</option>
+                    <option value="en">🇺🇸 English</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="de">🇩🇪 Deutsch</option>
+                </select>
+            </div>
+            <div class="selector-group region-selector">
+                <label>📍 Région :</label>
+                <select id="regionSelect">
+                    <option value="FR">🇫🇷 France</option>
+                    <option value="US">🇺🇸 États-Unis</option>
+                    <option value="UK">🇬🇧 Royaume-Uni</option>
+                    <option value="ES">🇪🇸 Espagne</option>
+                    <option value="DE">🇩🇪 Allemagne</option>
+                    <option value="CA">🇨🇦 Canada</option>
+                </select>
             </div>
         </div>
 
-        <!-- Main Content -->
+        <!-- Section principale -->
         <main class="main-content">
-            <!-- Platform Selection -->
-            <section class="section platform-section">
-                <h2 class="section-title">
-                    <span class="emoji">🎵</span>
-                    Choisissez votre plateforme
-                </h2>
-                <div class="platform-buttons">
-                    <button class="platform-btn" data-platform="spotify">
-                        <svg viewBox="0 0 24 24" class="platform-icon">
-                            <path fill="currentColor" d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
-                        </svg>
-                        <span>Spotify</span>
-                    </button>
-                    <button class="platform-btn" data-platform="deezer">
-                        <svg viewBox="0 0 24 24" class="platform-icon">
-                            <path fill="currentColor" d="M18.81 1.68v3.6h3.96v-3.6zm0 4.8v3.6h3.96v-3.6zm0 4.8v3.6h3.96v-3.6zm0 4.8v3.6h3.96v-3.6zm0 4.8v3.6h3.96v-3.6zm-5.4 0v3.6h3.96v-3.6zm0-4.8v3.6h3.96v-3.6zm0-4.8v3.6h3.96v-3.6zm-5.4 9.6v3.6h3.96v-3.6zm0-4.8v3.6h3.96v-3.6zm0-4.8v3.6h3.96v-3.6zm-5.4 9.6v3.6h3.96v-3.6zm0-4.8v3.6h3.96v-3.6z"/>
-                        </svg>
-                        <span>Deezer</span>
-                    </button>
+            
+            <!-- Publicité en haut -->
+            <div class="ad-container ad-horizontal">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-VOTRE-ID-ICI"
+                     data-ad-slot="1234567890"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+            </div>
+
+            <!-- Sélection de la plateforme -->
+            <section id="platform-section" class="section">
+                <div class="section-header">
+                    <h2>Choisissez votre plateforme</h2>
+                </div>
+                
+                <div class="platforms-grid">
+                    <div class="platform-card" data-platform="spotify">
+                        <div class="platform-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.84-.179-.959-.539-.12-.421.18-.84.54-.96 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.361 1.08zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56z"/>
+                            </svg>
+                        </div>
+                        <h3>Spotify</h3>
+                        <p>La référence du streaming</p>
+                    </div>
+                    
+                    <div class="platform-card" data-platform="deezer">
+                        <div class="platform-icon">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.81 12.74h3.1v1.38h-3.1v-1.38zm-3.1-1.38h3.1v1.38h-3.1V11.36zm-3.1 0h3.1v1.38h-3.1V11.36zm-3.1 0h3.1v1.38H9.51V11.36zm-3.1 0h3.1v1.38H6.41V11.36zm-3.1 0h3.1v1.38H3.31V11.36zm15.5-1.38h3.1v1.38h-3.1V9.98zm-3.1 0h3.1v1.38h-3.1V9.98zm-3.1 0h3.1v1.38h-3.1V9.98zm-3.1 0h3.1v1.38H9.51V9.98zm-3.1 0h3.1v1.38H6.41V9.98zm-3.1 0h3.1v1.38H3.31V9.98zm15.5-1.38h3.1v1.38h-3.1V8.6zm-3.1 0h3.1v1.38h-3.1V8.6zm-3.1 0h3.1v1.38h-3.1V8.6zm-3.1 0h3.1v1.38H9.51V8.6zm-3.1 0h3.1v1.38H6.41V8.6zm15.5 5.52h3.1v1.38h-3.1v-1.38zm-3.1 0h3.1v1.38h-3.1v-1.38zm-3.1 0h3.1v1.38h-3.1v-1.38z"/>
+                            </svg>
+                        </div>
+                        <h3>Deezer</h3>
+                        <p>Qualité audio premium</p>
+                    </div>
                 </div>
             </section>
 
-            <!-- Mood Selection -->
-            <section class="section mood-section" id="moodSection" style="display: none;">
-                <h2 class="section-title">
-                    <span class="emoji">🎭</span>
-                    Quelle ambiance pour vos fêtes ?
-                    <div class="mood-subtitle">Sélectionnez jusqu'à 3 ambiances</div>
-                </h2>
-                <div class="mood-grid">
-                    <button class="mood-btn" data-mood="traditional">
-                        <span class="mood-emoji">🎄</span>
-                        <span class="mood-name">Traditionnel</span>
-                        <span class="mood-desc">Classiques de Noël intemporels</span>
-                    </button>
-                    <button class="mood-btn" data-mood="family">
-                        <span class="mood-emoji">👨‍👩‍👧‍👦</span>
-                        <span class="mood-name">Familial</span>
-                        <span class="mood-desc">Pour toute la famille</span>
-                    </button>
-                    <button class="mood-btn" data-mood="party">
-                        <span class="mood-emoji">🎉</span>
-                        <span class="mood-name">Fête</span>
-                        <span class="mood-desc">Ambiance festive et dansante</span>
-                    </button>
-                    <button class="mood-btn" data-mood="romantic">
-                        <span class="mood-emoji">❤️</span>
-                        <span class="mood-name">Romantique</span>
-                        <span class="mood-desc">Doux et chaleureux</span>
-                    </button>
-                    <button class="mood-btn" data-mood="modern">
-                        <span class="mood-emoji">🎸</span>
-                        <span class="mood-name">Moderne</span>
-                        <span class="mood-desc">Versions contemporaines</span>
-                    </button>
-                    <button class="mood-btn" data-mood="kids">
-                        <span class="mood-emoji">🧸</span>
-                        <span class="mood-name">Enfants</span>
-                        <span class="mood-desc">Chansons pour les petits</span>
-                    </button>
-                    <button class="mood-btn" data-mood="jazz">
-                        <span class="mood-emoji">🎺</span>
-                        <span class="mood-name">Jazz</span>
-                        <span class="mood-desc">Noël en version jazz</span>
-                    </button>
-                    <button class="mood-btn" data-mood="instrumental">
-                        <span class="mood-emoji">🎹</span>
-                        <span class="mood-name">Instrumental</span>
-                        <span class="mood-desc">Musique de fond apaisante</span>
-                    </button>
+            <!-- Publicité verticale -->
+            <div class="ad-container ad-vertical">
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-VOTRE-ID-ICI"
+                     data-ad-slot="0987654321"
+                     data-ad-format="rectangle"></ins>
+            </div>
+
+            <!-- Sélection des ambiances -->
+            <section id="mood-section" class="section" style="display: none;">
+                <div class="section-header">
+                    <h2>Quelle ambiance pour vos fêtes ?</h2>
+                    <p class="section-subtitle">Sélectionnez jusqu'à 3 ambiances</p>
                 </div>
-                <button class="generate-btn" id="generateBtn" disabled>
+                
+                <div class="moods-grid">
+                    <div class="mood-card" data-mood="traditional">
+                        <div class="mood-icon">🕯️</div>
+                        <h3 class="mood-name">Traditionnel</h3>
+                        <p class="mood-desc">Classiques de Noël intemporels</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="family">
+                        <div class="mood-icon">👨‍👩‍👧‍👦</div>
+                        <h3 class="mood-name">Familial</h3>
+                        <p class="mood-desc">Pour toute la famille</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="jazzy">
+                        <div class="mood-icon">🎷</div>
+                        <h3 class="mood-name">Jazz</h3>
+                        <p class="mood-desc">Swing et standards jazz</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="modern">
+                        <div class="mood-icon">🎸</div>
+                        <h3 class="mood-name">Moderne</h3>
+                        <p class="mood-desc">Pop et rock contemporain</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="romantic">
+                        <div class="mood-icon">💕</div>
+                        <h3 class="mood-name">Romantique</h3>
+                        <p class="mood-desc">Ballades et ambiance intime</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="party">
+                        <div class="mood-icon">🎉</div>
+                        <h3 class="mood-name">Fête</h3>
+                        <p class="mood-desc">Rythmes entraînants</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="cozy">
+                        <div class="mood-icon">🏠</div>
+                        <h3 class="mood-name">Cosy</h3>
+                        <p class="mood-desc">Atmosphère chaleureuse</p>
+                    </div>
+                    
+                    <div class="mood-card" data-mood="international">
+                        <div class="mood-icon">🌍</div>
+                        <h3 class="mood-name">International</h3>
+                        <p class="mood-desc">Noël du monde entier</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bouton de génération -->
+            <div class="generate-section">
+                <button id="generate-btn" class="generate-button" style="display: none;">
                     <span class="btn-icon">✨</span>
                     Générer mes playlists
-                    <span class="btn-icon">✨</span>
                 </button>
-            </section>
-
-            <!-- Loading State -->
-            <div class="loading" id="loading" style="display: none;">
-                <div class="loading-spinner"></div>
-                <p>🎅 Le Père Noël prépare vos playlists...</p>
             </div>
 
-            <!-- Results Section -->
-            <section class="section results-section" id="resultsSection" style="display: none;">
-                <h2 class="section-title">
-                    <span class="emoji">🎁</span>
-                    Vos playlists de Noël
-                </h2>
-                <div id="playlistsContainer" class="playlists-grid"></div>
-                <button class="reset-btn" id="resetBtn">
-                    <span>🔄</span>
-                    Nouvelle recherche
-                </button>
-            </section>
-        </main>
-
-        <!-- AdSense Banner Bottom -->
-        <div class="adsense-banner bottom-banner">
-            <div class="adsense-placeholder">
-                <!-- Google AdSense Code Here -->
+            <!-- Publicité en bas -->
+            <div class="ad-container ad-horizontal">
                 <ins class="adsbygoogle"
                      style="display:block"
-                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXXXX"
-                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-client="ca-pub-VOTRE-ID-ICI"
+                     data-ad-slot="1122334455"
                      data-ad-format="auto"
                      data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script>
-                <p style="text-align: center; color: #999; font-size: 12px;">Publicité</p>
             </div>
-        </div>
+
+            <!-- Section des résultats -->
+            <section id="results-section" class="section results-section" style="display: none;">
+                <!-- Les résultats seront injectés ici -->
+            </section>
+
+        </main>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>🎄 Joyeux Noël 2024 🎄</p>
-            <p class="footer-note">Ce site utilise les APIs Spotify et Deezer pour vous proposer les meilleures playlists de Noël</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>🎄 Christmas Playlist Generator</h3>
+                    <p>Trouvez la musique parfaite pour vos fêtes de fin d'année</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Plateformes supportées</h4>
+                    <ul>
+                        <li>Spotify Premium & Gratuit</li>
+                        <li>Deezer Premium & Gratuit</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Ambiances disponibles</h4>
+                    <ul>
+                        <li>Traditionnel • Familial • Jazz</li>
+                        <li>Moderne • Romantique • Fête</li>
+                        <li>Cosy • International</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Christmas Playlist Generator. Créé avec ❤️ pour les fêtes</p>
+                <p class="footer-disclaimer">
+                    Ce site utilise les API Spotify et Deezer pour rechercher des playlists publiques. 
+                    Nous ne stockons aucune donnée personnelle.
+                </p>
+            </div>
         </footer>
     </div>
 
+    <!-- Scripts AdSense -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <!-- Analytics Google -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+
+    <!-- Script principal -->
     <script src="app.js"></script>
 </body>
 </html>
