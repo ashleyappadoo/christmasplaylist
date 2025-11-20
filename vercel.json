@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "christmas-playlist-generator-multilingual",
   "builds": [
     {
       "src": "server.js",
@@ -9,67 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*\\.(css|js|html|ico|png|jpg|jpeg|gif|svg))",
-      "dest": "/$1"
-    },
-    {
       "src": "/(.*)",
       "dest": "/server.js"
-    }
-  ],
-  "env": {
-    "SPOTIFY_CLIENT_ID": "@spotify_client_id",
-    "SPOTIFY_CLIENT_SECRET": "@spotify_client_secret"
-  },
-  "functions": {
-    "server.js": {
-      "includeFiles": "**"
-    }
-  },
-  "headers": [
-    {
-      "source": "/(.*\\.(css|js|html|ico|png|jpg|jpeg|gif|svg))",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        }
-      ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/fr",
-      "destination": "/?lang=fr",
-      "permanent": false
-    },
-    {
-      "source": "/en",
-      "destination": "/?lang=en",
-      "permanent": false
-    },
-    {
-      "source": "/es",
-      "destination": "/?lang=es",
-      "permanent": false
-    },
-    {
-      "source": "/de",
-      "destination": "/?lang=de",
-      "permanent": false
     }
   ]
 }
