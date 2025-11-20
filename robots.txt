@@ -1,0 +1,124 @@
+# Robots.txt pour Christmas Playlist Generator
+# Dernière mise à jour: 20 novembre 2024
+
+# Permettre à tous les bots d'explorer le site
+User-agent: *
+Allow: /
+
+# Exclure les fichiers et dossiers non essentiels pour le SEO
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /cache/
+Disallow: /logs/
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /src/
+Disallow: /dev/
+
+# Exclure les fichiers de configuration
+Disallow: /*.json$
+Disallow: /*.config.js$
+Disallow: /package*.json
+Disallow: /webpack*.js
+Disallow: /gulpfile.js
+Disallow: /gruntfile.js
+
+# Exclure les fichiers temporaires et de sauvegarde
+Disallow: /*~
+Disallow: /*.bak$
+Disallow: /*.tmp$
+Disallow: /*.temp$
+
+# Règles spécifiques pour GoogleBot (optimisation SEO)
+User-agent: Googlebot
+Allow: /
+Allow: /styles.css
+Allow: /app.js
+Allow: /images/
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.webp
+Allow: /*.svg
+Allow: /*.ico
+Crawl-delay: 1
+
+# Règles pour Bingbot (Microsoft)
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Règles pour les bots des réseaux sociaux
+User-agent: facebookexternalhit/*
+Allow: /
+Allow: /images/
+
+User-agent: Twitterbot
+Allow: /
+Allow: /images/
+
+User-agent: LinkedInBot
+Allow: /
+Allow: /images/
+
+# Règles pour les bots musicaux (Spotify, Apple Music, etc.)
+User-agent: Spotify
+Allow: /
+
+User-agent: AppleBot
+Allow: /
+
+# Bloquer les bots malveillants et les scrapers agressifs
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MajesticSEO
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+# Bloquer les bots de contenu dupliqué
+User-agent: SiteBot
+Disallow: /
+
+User-agent: CopyrightsBot
+Disallow: /
+
+User-agent: TurnitinBot
+Disallow: /
+
+# Permettre l'accès aux bots d'analyse de sécurité légitimes
+User-agent: SecurityTrails
+Allow: /
+
+# Emplacement du sitemap XML (IMPORTANT pour le SEO)
+Sitemap: https://votre-domaine.com/sitemap.xml
+
+# Informations additionnelles pour les développeurs
+# Ce site propose un générateur gratuit de playlists de Noël
+# Compatible avec Spotify et Deezer
+# Optimisé pour les recherches: "playlist noël", "musique noël", "chanson noël"
+
+# Délai d'exploration par défaut pour éviter la surcharge du serveur
+# Crawl-delay: 1
+
+# Note: Remplacez "votre-domaine.com" par votre vrai nom de domaine
+# Exemples: christmas-playlist-generator.com, noel-playlist.fr, etc.
+
+# Host directive (optionnel, pour spécifier le domaine principal)
+# Host: https://votre-domaine.com
