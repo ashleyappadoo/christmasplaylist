@@ -259,6 +259,7 @@ function t(key) {
                 if (value && value[k2] !== undefined) {
                     value = value[k2];
                 } else {
+                    console.warn(`Traduction manquante pour: ${key} dans ${state.currentLanguage}`);
                     return key; // Retourner la clé si aucune traduction trouvée
                 }
             }
@@ -276,35 +277,49 @@ function updateTranslations() {
     
     // Titre principal
     const mainTitle = document.querySelector('.hero h1');
-    if (mainTitle) mainTitle.textContent = t('title');
+    if (mainTitle) {
+        mainTitle.textContent = t('title');
+    }
     
     // Sous-titre
     const subtitle = document.querySelector('.hero .subtitle');
-    if (subtitle) subtitle.textContent = t('subtitle');
+    if (subtitle) {
+        subtitle.textContent = t('subtitle');
+    }
     
-    // Labels des sélecteurs
+    // Labels des sélecteurs avec sélecteurs spécifiques
     const languageLabel = document.querySelector('.language-selector label');
-    if (languageLabel) languageLabel.textContent = t('languageLabel');
+    if (languageLabel) {
+        languageLabel.textContent = t('languageLabel');
+    }
     
     const regionLabel = document.querySelector('.region-selector label');
-    if (regionLabel) regionLabel.textContent = t('regionLabel');
+    if (regionLabel) {
+        regionLabel.textContent = t('regionLabel');
+    }
     
     // Titre de la section plateforme
     const platformTitle = document.querySelector('#platform-section h2');
-    if (platformTitle) platformTitle.textContent = t('platformTitle');
+    if (platformTitle) {
+        platformTitle.textContent = t('platformTitle');
+    }
     
     // Titre de la section ambiances
     const moodTitle = document.querySelector('#mood-section h2');
-    if (moodTitle) moodTitle.textContent = t('moodTitle');
+    if (moodTitle) {
+        moodTitle.textContent = t('moodTitle');
+    }
     
     // Sous-titre des ambiances
     const moodSubtitle = document.querySelector('#mood-section .section-subtitle');
-    if (moodSubtitle) moodSubtitle.textContent = t('moodSubtitle');
+    if (moodSubtitle) {
+        moodSubtitle.textContent = t('moodSubtitle');
+    }
     
     // Bouton de génération
     const generateBtn = document.querySelector('#generate-btn');
     if (generateBtn && !state.isLoading) {
-        generateBtn.textContent = t('generateBtn');
+        generateBtn.innerHTML = `<span class="btn-icon">✨</span> ${t('generateBtn')}`;
     }
     
     // Mettre à jour les options de région
@@ -313,14 +328,17 @@ function updateTranslations() {
         const options = regionSelect.querySelectorAll('option');
         options.forEach(option => {
             const regionCode = option.value;
-            if (t(`regions.${regionCode}`)) {
-                option.textContent = t(`regions.${regionCode}`);
+            const translatedRegion = t(`regions.${regionCode}`);
+            if (translatedRegion && translatedRegion !== `regions.${regionCode}`) {
+                option.textContent = translatedRegion;
             }
         });
     }
     
     // Mettre à jour les ambiances
     updateMoodCards();
+    
+    console.log(`Interface mise à jour en ${state.currentLanguage}`);
 }
 
 // Fonction pour mettre à jour les cartes d'ambiance
@@ -331,17 +349,32 @@ function updateMoodCards() {
         const nameElement = card.querySelector('.mood-name');
         const descElement = card.querySelector('.mood-desc');
         
-        if (nameElement && t(`moods.${moodType}.name`)) {
-            nameElement.textContent = t(`moods.${moodType}.name`);
+        if (nameElement) {
+            const translatedName = t(`moods.${moodType}.name`);
+            if (translatedName && translatedName !== `moods.${moodType}.name`) {
+                nameElement.textContent = translatedName;
+            }
         }
-        if (descElement && t(`moods.${moodType}.desc`)) {
-            descElement.textContent = t(`moods.${moodType}.desc`);
+        
+        if (descElement) {
+            const translatedDesc = t(`moods.${moodType}.desc`);
+            if (translatedDesc && translatedDesc !== `moods.${moodType}.desc`) {
+                descElement.textContent = translatedDesc;
+            }
         }
     });
 }
 
 // Fonction pour détecter la langue du navigateur
 function detectBrowserLanguage() {
+    // Vérifier d'abord les paramètres URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam && translations[langParam]) {
+        return langParam;
+    }
+    
+    // Ensuite la langue du navigateur
     const browserLang = navigator.language || navigator.userLanguage;
     const langCode = browserLang.split('-')[0].toLowerCase();
     
@@ -355,6 +388,18 @@ function detectBrowserLanguage() {
 
 // Fonction pour détecter la région du navigateur
 function detectBrowserRegion() {
+    // Vérifier d'abord les paramètres URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const regionParam = urlParams.get('region');
+    if (regionParam) {
+        const upperRegion = regionParam.toUpperCase();
+        const supportedRegions = ['FR', 'US', 'UK', 'ES', 'DE', 'CA'];
+        if (supportedRegions.includes(upperRegion)) {
+            return upperRegion;
+        }
+    }
+    
+    // Ensuite la région basée sur la langue
     const browserLang = navigator.language || navigator.userLanguage;
     const regionCode = browserLang.split('-')[1];
     
@@ -366,7 +411,16 @@ function detectBrowserRegion() {
         }
     }
     
-    return 'FR'; // Défaut
+    // Mapping par défaut basé sur la langue
+    const langCode = browserLang.split('-')[0].toLowerCase();
+    const defaultRegions = {
+        'fr': 'FR',
+        'en': 'US',
+        'es': 'ES',
+        'de': 'DE'
+    };
+    
+    return defaultRegions[langCode] || 'FR';
 }
 
 // Initialisation des sélecteurs de langue et région
@@ -374,6 +428,8 @@ function initializeLanguageAndRegion() {
     // Auto-détecter la langue et région
     state.currentLanguage = detectBrowserLanguage();
     state.currentRegion = detectBrowserRegion();
+    
+    console.log(`Langue détectée: ${state.currentLanguage}, Région: ${state.currentRegion}`);
     
     // Mettre à jour les sélecteurs
     const languageSelect = document.getElementById('languageSelect');
@@ -383,7 +439,13 @@ function initializeLanguageAndRegion() {
         languageSelect.value = state.currentLanguage;
         languageSelect.addEventListener('change', (e) => {
             state.currentLanguage = e.target.value;
+            console.log(`Langue changée: ${state.currentLanguage}`);
             updateTranslations();
+            
+            // Mettre à jour l'URL
+            const url = new URL(window.location);
+            url.searchParams.set('lang', state.currentLanguage);
+            window.history.pushState({}, '', url);
         });
     }
     
@@ -391,11 +453,17 @@ function initializeLanguageAndRegion() {
         regionSelect.value = state.currentRegion;
         regionSelect.addEventListener('change', (e) => {
             state.currentRegion = e.target.value;
+            console.log(`Région changée: ${state.currentRegion}`);
+            
+            // Mettre à jour l'URL
+            const url = new URL(window.location);
+            url.searchParams.set('region', state.currentRegion);
+            window.history.pushState({}, '', url);
         });
     }
     
-    // Mettre à jour l'interface
-    updateTranslations();
+    // Mettre à jour l'interface après initialisation
+    setTimeout(updateTranslations, 100);
 }
 
 // Gestion de la sélection des plateformes
@@ -416,7 +484,9 @@ function initializePlatformSelection() {
             const moodSection = document.getElementById('mood-section');
             if (moodSection) {
                 moodSection.style.display = 'block';
-                moodSection.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                    moodSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
             }
         });
     });
@@ -444,7 +514,9 @@ function initializeMoodSelection() {
             if (generateBtn) {
                 if (state.selectedMoods.length > 0) {
                     generateBtn.style.display = 'block';
-                    generateBtn.scrollIntoView({ behavior: 'smooth' });
+                    setTimeout(() => {
+                        generateBtn.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
                 } else {
                     generateBtn.style.display = 'none';
                 }
@@ -456,7 +528,9 @@ function initializeMoodSelection() {
 // Génération des playlists
 async function generatePlaylists() {
     if (!state.selectedPlatform || state.selectedMoods.length === 0) {
-        alert('Veuillez sélectionner une plateforme et au moins une ambiance');
+        alert(state.currentLanguage === 'fr' ? 
+            'Veuillez sélectionner une plateforme et au moins une ambiance' :
+            'Please select a platform and at least one mood');
         return;
     }
 
@@ -465,7 +539,7 @@ async function generatePlaylists() {
     
     // État de chargement
     state.isLoading = true;
-    generateBtn.textContent = t('loadingText');
+    generateBtn.innerHTML = `<span class="btn-icon">⏳</span> ${t('loadingText')}`;
     generateBtn.disabled = true;
     
     // Afficher la section résultats
@@ -476,7 +550,9 @@ async function generatePlaylists() {
             <p>${t('loadingText')}</p>
         </div>
     `;
-    resultsSection.scrollIntoView({ behavior: 'smooth' });
+    setTimeout(() => {
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
 
     try {
         const response = await fetch('/api/playlists', {
@@ -516,7 +592,7 @@ async function generatePlaylists() {
     } finally {
         // Remettre le bouton en état normal
         state.isLoading = false;
-        generateBtn.textContent = t('generateBtn');
+        generateBtn.innerHTML = `<span class="btn-icon">✨</span> ${t('generateBtn')}`;
         generateBtn.disabled = false;
     }
 }
@@ -562,19 +638,38 @@ function displayPlaylists(playlists) {
 
 // Initialisation de l'application
 function initializeApp() {
-    // Initialiser la langue et région
-    initializeLanguageAndRegion();
+    console.log('🎄 Initialisation de l\'application');
     
-    // Initialiser les sélections
-    initializePlatformSelection();
-    initializeMoodSelection();
-    
-    // Event listener pour le bouton de génération
-    const generateBtn = document.getElementById('generate-btn');
-    if (generateBtn) {
-        generateBtn.addEventListener('click', generatePlaylists);
-    }
+    // Attendre que le DOM soit complètement chargé
+    setTimeout(() => {
+        // Initialiser la langue et région en premier
+        initializeLanguageAndRegion();
+        
+        // Puis initialiser les autres composants
+        initializePlatformSelection();
+        initializeMoodSelection();
+        
+        // Event listener pour le bouton de génération
+        const generateBtn = document.getElementById('generate-btn');
+        if (generateBtn) {
+            generateBtn.addEventListener('click', generatePlaylists);
+        }
+        
+        console.log('✅ Application initialisée avec succès');
+    }, 200);
 }
 
 // Démarrer l'application quand le DOM est chargé
-document.addEventListener('DOMContentLoaded', initializeApp);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+} else {
+    initializeApp();
+}
+
+// Pour le debug
+window.debugApp = {
+    state,
+    t,
+    updateTranslations,
+    translations
+};
