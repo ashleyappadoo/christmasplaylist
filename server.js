@@ -210,7 +210,7 @@ app.get('/app.js', (req, res) => {
 
 // Route principale
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // API: Rechercher playlists (POST pour multiple moods)
