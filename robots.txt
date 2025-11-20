@@ -107,7 +107,7 @@ User-agent: SecurityTrails
 Allow: /
 
 # Emplacement du sitemap XML (IMPORTANT pour le SEO)
-Sitemap: https://votre-domaine.com/sitemap.xml
+Sitemap: https://christmas-playlist.com/sitemap.xml
 
 # Informations additionnelles pour les développeurs
 # Ce site propose un générateur gratuit de playlists de Noël
@@ -121,4 +121,5 @@ Sitemap: https://votre-domaine.com/sitemap.xml
 # Exemples: christmas-playlist-generator.com, noel-playlist.fr, etc.
 
 # Host directive (optionnel, pour spécifier le domaine principal)
-# Host: https://votre-domaine.com
+
+# Host: https://christmas-playlist.com
