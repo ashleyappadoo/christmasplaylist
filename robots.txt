@@ -108,6 +108,7 @@ Allow: /
 
 # Emplacement du sitemap XML (IMPORTANT pour le SEO)
 Sitemap: https://christmas-playlist.com/sitemap.xml
+Sitemap: https://christmas-playlist.com/sitemap_en.xml
 
 # Informations additionnelles pour les développeurs
 # Ce site propose un générateur gratuit de playlists de Noël
@@ -123,3 +124,4 @@ Sitemap: https://christmas-playlist.com/sitemap.xml
 # Host directive (optionnel, pour spécifier le domaine principal)
 
 # Host: https://christmas-playlist.com
+
