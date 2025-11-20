@@ -1,77 +1,484 @@
-// State Management
+// Dictionnaire de traductions complet
+const translations = {
+    fr: {
+        title: "Générateur de Playlists de Noël",
+        subtitle: "Trouvez la playlist parfaite pour vos fêtes ✨",
+        languageLabel: "🌍 Langue :",
+        regionLabel: "📍 Région :",
+        platformTitle: "Choisissez votre plateforme",
+        moodTitle: "Quelle ambiance pour vos fêtes ?",
+        moodSubtitle: "Sélectionnez jusqu'à 3 ambiances",
+        generateBtn: "Générer mes playlists",
+        loadingText: "Génération en cours...",
+        errorText: "Erreur lors de la génération des playlists",
+        noPlaylistsText: "Aucune playlist trouvée pour ces critères",
+        playlistsFoundText: "playlists trouvées",
+        trackText: "pistes",
+        byText: "par",
+        regions: {
+            FR: "🇫🇷 France",
+            US: "🇺🇸 États-Unis",
+            UK: "🇬🇧 Royaume-Uni",
+            ES: "🇪🇸 Espagne",
+            DE: "🇩🇪 Allemagne",
+            CA: "🇨🇦 Canada"
+        },
+        moods: {
+            traditional: {
+                name: "Traditionnel",
+                desc: "Classiques de Noël intemporels"
+            },
+            family: {
+                name: "Familial",
+                desc: "Pour toute la famille"
+            },
+            jazzy: {
+                name: "Jazz",
+                desc: "Swing et standards jazz"
+            },
+            modern: {
+                name: "Moderne",
+                desc: "Pop et rock contemporain"
+            },
+            romantic: {
+                name: "Romantique",
+                desc: "Ballades et ambiance intime"
+            },
+            party: {
+                name: "Fête",
+                desc: "Rythmes entraînants"
+            },
+            cozy: {
+                name: "Cosy",
+                desc: "Atmosphère chaleureuse"
+            },
+            international: {
+                name: "International",
+                desc: "Noël du monde entier"
+            }
+        }
+    },
+    en: {
+        title: "Christmas Playlist Generator",
+        subtitle: "Find the perfect playlist for your holidays ✨",
+        languageLabel: "🌍 Language:",
+        regionLabel: "📍 Region:",
+        platformTitle: "Choose your platform",
+        moodTitle: "What's your holiday vibe?",
+        moodSubtitle: "Select up to 3 moods",
+        generateBtn: "Generate my playlists",
+        loadingText: "Generating...",
+        errorText: "Error generating playlists",
+        noPlaylistsText: "No playlists found for these criteria",
+        playlistsFoundText: "playlists found",
+        trackText: "tracks",
+        byText: "by",
+        regions: {
+            FR: "🇫🇷 France",
+            US: "🇺🇸 United States",
+            UK: "🇬🇧 United Kingdom",
+            ES: "🇪🇸 Spain",
+            DE: "🇩🇪 Germany",
+            CA: "🇨🇦 Canada"
+        },
+        moods: {
+            traditional: {
+                name: "Traditional",
+                desc: "Timeless Christmas classics"
+            },
+            family: {
+                name: "Family",
+                desc: "Perfect for the whole family"
+            },
+            jazzy: {
+                name: "Jazz",
+                desc: "Swing and jazz standards"
+            },
+            modern: {
+                name: "Modern",
+                desc: "Contemporary pop and rock"
+            },
+            romantic: {
+                name: "Romantic",
+                desc: "Ballads and intimate vibes"
+            },
+            party: {
+                name: "Party",
+                desc: "Upbeat and energetic"
+            },
+            cozy: {
+                name: "Cozy",
+                desc: "Warm and peaceful atmosphere"
+            },
+            international: {
+                name: "International",
+                desc: "Christmas around the world"
+            }
+        }
+    },
+    es: {
+        title: "Generador de Listas Navideñas",
+        subtitle: "Encuentra la lista perfecta para tus fiestas ✨",
+        languageLabel: "🌍 Idioma:",
+        regionLabel: "📍 Región:",
+        platformTitle: "Elige tu plataforma",
+        moodTitle: "¿Cuál es tu ambiente navideño?",
+        moodSubtitle: "Selecciona hasta 3 ambientes",
+        generateBtn: "Generar mis listas",
+        loadingText: "Generando...",
+        errorText: "Error generando listas",
+        noPlaylistsText: "No se encontraron listas para estos criterios",
+        playlistsFoundText: "listas encontradas",
+        trackText: "pistas",
+        byText: "por",
+        regions: {
+            FR: "🇫🇷 Francia",
+            US: "🇺🇸 Estados Unidos",
+            UK: "🇬🇧 Reino Unido",
+            ES: "🇪🇸 España",
+            DE: "🇩🇪 Alemania",
+            CA: "🇨🇦 Canadá"
+        },
+        moods: {
+            traditional: {
+                name: "Tradicional",
+                desc: "Clásicos navideños atemporales"
+            },
+            family: {
+                name: "Familiar",
+                desc: "Perfecto para toda la familia"
+            },
+            jazzy: {
+                name: "Jazz",
+                desc: "Swing y estándares de jazz"
+            },
+            modern: {
+                name: "Moderno",
+                desc: "Pop y rock contemporáneo"
+            },
+            romantic: {
+                name: "Romántico",
+                desc: "Baladas y ambiente íntimo"
+            },
+            party: {
+                name: "Fiesta",
+                desc: "Ritmos alegres y energéticos"
+            },
+            cozy: {
+                name: "Acogedor",
+                desc: "Ambiente cálido y tranquilo"
+            },
+            international: {
+                name: "Internacional",
+                desc: "Navidad alrededor del mundo"
+            }
+        }
+    },
+    de: {
+        title: "Weihnachts-Playlist Generator",
+        subtitle: "Finde die perfekte Playlist für deine Feiertage ✨",
+        languageLabel: "🌍 Sprache:",
+        regionLabel: "📍 Region:",
+        platformTitle: "Wähle deine Plattform",
+        moodTitle: "Wie ist deine Weihnachtsstimmung?",
+        moodSubtitle: "Wähle bis zu 3 Stimmungen",
+        generateBtn: "Meine Playlists generieren",
+        loadingText: "Wird generiert...",
+        errorText: "Fehler beim Generieren der Playlists",
+        noPlaylistsText: "Keine Playlists für diese Kriterien gefunden",
+        playlistsFoundText: "Playlists gefunden",
+        trackText: "Titel",
+        byText: "von",
+        regions: {
+            FR: "🇫🇷 Frankreich",
+            US: "🇺🇸 Vereinigte Staaten",
+            UK: "🇬🇧 Vereinigtes Königreich",
+            ES: "🇪🇸 Spanien",
+            DE: "🇩🇪 Deutschland",
+            CA: "🇨🇦 Kanada"
+        },
+        moods: {
+            traditional: {
+                name: "Traditionell",
+                desc: "Zeitlose Weihnachtsklassiker"
+            },
+            family: {
+                name: "Familie",
+                desc: "Perfekt für die ganze Familie"
+            },
+            jazzy: {
+                name: "Jazz",
+                desc: "Swing und Jazz-Standards"
+            },
+            modern: {
+                name: "Modern",
+                desc: "Zeitgenössischer Pop und Rock"
+            },
+            romantic: {
+                name: "Romantisch",
+                desc: "Balladen und intime Stimmung"
+            },
+            party: {
+                name: "Party",
+                desc: "Schwungvoll und energiegeladen"
+            },
+            cozy: {
+                name: "Gemütlich",
+                desc: "Warme und friedliche Atmosphäre"
+            },
+            international: {
+                name: "International",
+                desc: "Weihnachten rund um die Welt"
+            }
+        }
+    }
+};
+
+// State de l'application
 const state = {
     selectedPlatform: null,
     selectedMoods: [],
-    playlists: []
+    playlists: [],
+    currentLanguage: 'fr',
+    currentRegion: 'FR',
+    isLoading: false
 };
 
-// DOM Elements
-const platformButtons = document.querySelectorAll('.platform-btn');
-const moodSection = document.getElementById('moodSection');
-const moodButtons = document.querySelectorAll('.mood-btn');
-const generateBtn = document.getElementById('generateBtn');
-const loading = document.getElementById('loading');
-const resultsSection = document.getElementById('resultsSection');
-const playlistsContainer = document.getElementById('playlistsContainer');
-const resetBtn = document.getElementById('resetBtn');
-
-// Platform Selection
-platformButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Remove active class from all buttons
-        platformButtons.forEach(b => b.classList.remove('active'));
-        
-        // Add active class to clicked button
-        btn.classList.add('active');
-        
-        // Update state
-        state.selectedPlatform = btn.dataset.platform;
-        
-        // Show mood selection
-        moodSection.style.display = 'block';
-        moodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
-// Mood Selection
-moodButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const mood = btn.dataset.mood;
-        
-        // Toggle selection
-        if (btn.classList.contains('selected')) {
-            btn.classList.remove('selected');
-            state.selectedMoods = state.selectedMoods.filter(m => m !== mood);
+// Fonction pour obtenir la traduction
+function t(key) {
+    const keys = key.split('.');
+    let value = translations[state.currentLanguage];
+    
+    for (const k of keys) {
+        if (value && value[k] !== undefined) {
+            value = value[k];
         } else {
-            // Limit to 3 moods
-            if (state.selectedMoods.length < 3) {
-                btn.classList.add('selected');
-                state.selectedMoods.push(mood);
-            } else {
-                showNotification('Vous pouvez sélectionner maximum 3 ambiances 🎄');
+            // Fallback vers l'anglais si la traduction n'existe pas
+            value = translations.en;
+            for (const k2 of keys) {
+                if (value && value[k2] !== undefined) {
+                    value = value[k2];
+                } else {
+                    return key; // Retourner la clé si aucune traduction trouvée
+                }
             }
+            break;
         }
-        
-        // Enable/disable generate button
-        generateBtn.disabled = state.selectedMoods.length === 0;
-    });
-});
+    }
+    
+    return value;
+}
 
-// Generate Playlists
-generateBtn.addEventListener('click', async () => {
-    if (state.selectedMoods.length === 0) {
-        showNotification('Veuillez sélectionner au moins une ambiance');
+// Fonction pour mettre à jour l'interface avec les traductions
+function updateTranslations() {
+    // Titre de la page
+    document.title = t('title');
+    
+    // Titre principal
+    const mainTitle = document.querySelector('.hero h1');
+    if (mainTitle) mainTitle.textContent = t('title');
+    
+    // Sous-titre
+    const subtitle = document.querySelector('.hero .subtitle');
+    if (subtitle) subtitle.textContent = t('subtitle');
+    
+    // Labels des sélecteurs
+    const languageLabel = document.querySelector('.language-selector label');
+    if (languageLabel) languageLabel.textContent = t('languageLabel');
+    
+    const regionLabel = document.querySelector('.region-selector label');
+    if (regionLabel) regionLabel.textContent = t('regionLabel');
+    
+    // Titre de la section plateforme
+    const platformTitle = document.querySelector('#platform-section h2');
+    if (platformTitle) platformTitle.textContent = t('platformTitle');
+    
+    // Titre de la section ambiances
+    const moodTitle = document.querySelector('#mood-section h2');
+    if (moodTitle) moodTitle.textContent = t('moodTitle');
+    
+    // Sous-titre des ambiances
+    const moodSubtitle = document.querySelector('#mood-section .section-subtitle');
+    if (moodSubtitle) moodSubtitle.textContent = t('moodSubtitle');
+    
+    // Bouton de génération
+    const generateBtn = document.querySelector('#generate-btn');
+    if (generateBtn && !state.isLoading) {
+        generateBtn.textContent = t('generateBtn');
+    }
+    
+    // Mettre à jour les options de région
+    const regionSelect = document.getElementById('regionSelect');
+    if (regionSelect) {
+        const options = regionSelect.querySelectorAll('option');
+        options.forEach(option => {
+            const regionCode = option.value;
+            if (t(`regions.${regionCode}`)) {
+                option.textContent = t(`regions.${regionCode}`);
+            }
+        });
+    }
+    
+    // Mettre à jour les ambiances
+    updateMoodCards();
+}
+
+// Fonction pour mettre à jour les cartes d'ambiance
+function updateMoodCards() {
+    const moodCards = document.querySelectorAll('.mood-card');
+    moodCards.forEach(card => {
+        const moodType = card.dataset.mood;
+        const nameElement = card.querySelector('.mood-name');
+        const descElement = card.querySelector('.mood-desc');
+        
+        if (nameElement && t(`moods.${moodType}.name`)) {
+            nameElement.textContent = t(`moods.${moodType}.name`);
+        }
+        if (descElement && t(`moods.${moodType}.desc`)) {
+            descElement.textContent = t(`moods.${moodType}.desc`);
+        }
+    });
+}
+
+// Fonction pour détecter la langue du navigateur
+function detectBrowserLanguage() {
+    const browserLang = navigator.language || navigator.userLanguage;
+    const langCode = browserLang.split('-')[0].toLowerCase();
+    
+    // Vérifier si la langue est supportée
+    if (translations[langCode]) {
+        return langCode;
+    }
+    
+    return 'fr'; // Défaut
+}
+
+// Fonction pour détecter la région du navigateur
+function detectBrowserRegion() {
+    const browserLang = navigator.language || navigator.userLanguage;
+    const regionCode = browserLang.split('-')[1];
+    
+    if (regionCode) {
+        const upperRegion = regionCode.toUpperCase();
+        const supportedRegions = ['FR', 'US', 'UK', 'ES', 'DE', 'CA'];
+        if (supportedRegions.includes(upperRegion)) {
+            return upperRegion;
+        }
+    }
+    
+    return 'FR'; // Défaut
+}
+
+// Initialisation des sélecteurs de langue et région
+function initializeLanguageAndRegion() {
+    // Auto-détecter la langue et région
+    state.currentLanguage = detectBrowserLanguage();
+    state.currentRegion = detectBrowserRegion();
+    
+    // Mettre à jour les sélecteurs
+    const languageSelect = document.getElementById('languageSelect');
+    const regionSelect = document.getElementById('regionSelect');
+    
+    if (languageSelect) {
+        languageSelect.value = state.currentLanguage;
+        languageSelect.addEventListener('change', (e) => {
+            state.currentLanguage = e.target.value;
+            updateTranslations();
+        });
+    }
+    
+    if (regionSelect) {
+        regionSelect.value = state.currentRegion;
+        regionSelect.addEventListener('change', (e) => {
+            state.currentRegion = e.target.value;
+        });
+    }
+    
+    // Mettre à jour l'interface
+    updateTranslations();
+}
+
+// Gestion de la sélection des plateformes
+function initializePlatformSelection() {
+    const platformCards = document.querySelectorAll('.platform-card');
+    platformCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // Supprimer la classe selected de toutes les cartes
+            platformCards.forEach(c => c.classList.remove('selected'));
+            
+            // Ajouter la classe selected à la carte cliquée
+            card.classList.add('selected');
+            
+            // Mettre à jour le state
+            state.selectedPlatform = card.dataset.platform;
+            
+            // Afficher la section suivante
+            const moodSection = document.getElementById('mood-section');
+            if (moodSection) {
+                moodSection.style.display = 'block';
+                moodSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+}
+
+// Gestion de la sélection des ambiances
+function initializeMoodSelection() {
+    const moodCards = document.querySelectorAll('.mood-card');
+    moodCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const mood = card.dataset.mood;
+            
+            if (state.selectedMoods.includes(mood)) {
+                // Déselectionner
+                state.selectedMoods = state.selectedMoods.filter(m => m !== mood);
+                card.classList.remove('selected');
+            } else if (state.selectedMoods.length < 3) {
+                // Sélectionner (max 3)
+                state.selectedMoods.push(mood);
+                card.classList.add('selected');
+            }
+            
+            // Afficher le bouton si au moins une ambiance est sélectionnée
+            const generateBtn = document.getElementById('generate-btn');
+            if (generateBtn) {
+                if (state.selectedMoods.length > 0) {
+                    generateBtn.style.display = 'block';
+                    generateBtn.scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    generateBtn.style.display = 'none';
+                }
+            }
+        });
+    });
+}
+
+// Génération des playlists
+async function generatePlaylists() {
+    if (!state.selectedPlatform || state.selectedMoods.length === 0) {
+        alert('Veuillez sélectionner une plateforme et au moins une ambiance');
         return;
     }
 
-    // Hide mood section and show loading
-    moodSection.style.display = 'none';
-    resultsSection.style.display = 'none';
-    loading.style.display = 'block';
-    loading.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const generateBtn = document.getElementById('generate-btn');
+    const resultsSection = document.getElementById('results-section');
     
+    // État de chargement
+    state.isLoading = true;
+    generateBtn.textContent = t('loadingText');
+    generateBtn.disabled = true;
+    
+    // Afficher la section résultats
+    resultsSection.style.display = 'block';
+    resultsSection.innerHTML = `
+        <div class="loading">
+            <div class="loading-spinner"></div>
+            <p>${t('loadingText')}</p>
+        </div>
+    `;
+    resultsSection.scrollIntoView({ behavior: 'smooth' });
+
     try {
-        // Call backend API
         const response = await fetch('/api/playlists', {
             method: 'POST',
             headers: {
@@ -79,238 +486,95 @@ generateBtn.addEventListener('click', async () => {
             },
             body: JSON.stringify({
                 platform: state.selectedPlatform,
-                moods: state.selectedMoods
+                moods: state.selectedMoods,
+                language: state.currentLanguage,
+                region: state.currentRegion
             })
         });
-        
-        if (!response.ok) {
-            throw new Error('Erreur lors de la récupération des playlists');
-        }
-        
-        const data = await response.json();
-        state.playlists = data.playlists || [];
-        
-        // Display results
-        displayPlaylists();
-        
-    } catch (error) {
-        console.error('Error:', error);
-        showNotification('⚠️ Oups! Une erreur est survenue. Veuillez réessayer.');
-        moodSection.style.display = 'block';
-    } finally {
-        loading.style.display = 'none';
-    }
-});
 
-// Display Playlists
-function displayPlaylists() {
-    playlistsContainer.innerHTML = '';
-    
-    if (state.playlists.length === 0) {
-        playlistsContainer.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 40px;">
-                <p style="font-size: 1.5em; color: #666;">
-                    😔 Aucune playlist trouvée pour cette combinaison.<br>
-                    Essayez d'autres ambiances!
-                </p>
+        const data = await response.json();
+
+        if (data.success && data.playlists && data.playlists.length > 0) {
+            state.playlists = data.playlists;
+            displayPlaylists(data.playlists);
+        } else {
+            resultsSection.innerHTML = `
+                <div class="no-results">
+                    <h3>🎵 ${t('noPlaylistsText')}</h3>
+                    <p>Essayez avec d'autres critères ou une autre plateforme</p>
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Erreur:', error);
+        resultsSection.innerHTML = `
+            <div class="error">
+                <h3>❌ ${t('errorText')}</h3>
+                <p>Veuillez réessayer dans quelques instants</p>
             </div>
         `;
-        resultsSection.style.display = 'block';
-        resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        return;
+    } finally {
+        // Remettre le bouton en état normal
+        state.isLoading = false;
+        generateBtn.textContent = t('generateBtn');
+        generateBtn.disabled = false;
     }
-    
-    state.playlists.forEach((playlist, index) => {
-        const card = createPlaylistCard(playlist, index);
-        playlistsContainer.appendChild(card);
-    });
-    
-    resultsSection.style.display = 'block';
-    resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-// Create Playlist Card
-function createPlaylistCard(playlist, index) {
-    const card = document.createElement('div');
-    card.className = 'playlist-card';
-    card.style.animationDelay = `${index * 0.1}s`;
+// Affichage des playlists
+function displayPlaylists(playlists) {
+    const resultsSection = document.getElementById('results-section');
     
-    const platformClass = state.selectedPlatform;
-    const platformEmoji = state.selectedPlatform === 'spotify' ? '🎵' : '🎶';
-    const platformName = state.selectedPlatform === 'spotify' ? 'Spotify' : 'Deezer';
-    
-    // Sécurité: s'assurer que les valeurs existent
-    const name = escapeHtml(playlist.name || 'Playlist de Noël');
-    const description = escapeHtml(playlist.description || 'Une sélection parfaite pour vos fêtes de Noël!');
-    const image = playlist.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23165B33%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🎄 Playlist de Noël%3C/text%3E%3C/svg%3E';
-    const url = playlist.url || '#';
-    
-    card.innerHTML = `
-        <img src="${image}" alt="${name}" class="playlist-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22200%22%3E%3Crect fill=%22%23165B33%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2224%22 fill=%22white%22 text-anchor=%22middle%22 dy=%22.3em%22%3E🎄 Playlist de Noël%3C/text%3E%3C/svg%3E'">
-        <div class="playlist-info">
-            <h3 class="playlist-name">${name}</h3>
-            <p class="playlist-description">${description}</p>
-            <div class="playlist-stats">
-                ${playlist.tracks ? `<div class="stat">🎵 ${playlist.tracks} titres</div>` : ''}
-                ${playlist.followers ? `<div class="stat">❤️ ${formatNumber(playlist.followers)} abonnés</div>` : ''}
-            </div>
-            <button class="play-btn ${platformClass}" onclick="openPlaylist('${url}')">
-                ${platformEmoji} Écouter sur ${platformName}
-            </button>
+    const resultsHTML = `
+        <div class="results-header">
+            <h2>🎵 ${playlists.length} ${t('playlistsFoundText')}</h2>
+        </div>
+        <div class="playlists-grid">
+            ${playlists.map(playlist => `
+                <div class="playlist-card" data-mood="${playlist.mood}">
+                    <div class="playlist-image">
+                        <img src="${playlist.image}" alt="${playlist.name}" loading="lazy">
+                        <div class="playlist-platform">
+                            ${playlist.platform === 'spotify' ? 
+                                '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/spotify.svg" alt="Spotify">' : 
+                                '<img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/deezer.svg" alt="Deezer">'
+                            }
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3 class="playlist-name">${playlist.name}</h3>
+                        <p class="playlist-desc">${playlist.description || ''}</p>
+                        <div class="playlist-meta">
+                            <span class="track-count">${playlist.trackCount} ${t('trackText')}</span>
+                            <span class="playlist-owner">${t('byText')} ${playlist.owner}</span>
+                        </div>
+                        <a href="${playlist.url}" target="_blank" rel="noopener" class="playlist-link">
+                            Écouter sur ${playlist.platform === 'spotify' ? 'Spotify' : 'Deezer'}
+                        </a>
+                    </div>
+                </div>
+            `).join('')}
         </div>
     `;
     
-    return card;
+    resultsSection.innerHTML = resultsHTML;
 }
 
-// Open Playlist
-function openPlaylist(url) {
-    if (url && url !== '#') {
-        window.open(url, '_blank');
-    } else {
-        showNotification('Lien indisponible pour cette playlist');
-    }
-}
-
-// Reset
-resetBtn.addEventListener('click', () => {
-    // Reset state
-    state.selectedMoods = [];
-    state.playlists = [];
+// Initialisation de l'application
+function initializeApp() {
+    // Initialiser la langue et région
+    initializeLanguageAndRegion();
     
-    // Reset UI
-    moodButtons.forEach(btn => btn.classList.remove('selected'));
-    generateBtn.disabled = true;
-    resultsSection.style.display = 'none';
-    moodSection.style.display = 'block';
+    // Initialiser les sélections
+    initializePlatformSelection();
+    initializeMoodSelection();
     
-    // Scroll to mood section
-    moodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
-
-// Utility Functions
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+    // Event listener pour le bouton de génération
+    const generateBtn = document.getElementById('generate-btn');
+    if (generateBtn) {
+        generateBtn.addEventListener('click', generatePlaylists);
+    }
 }
 
-function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function formatNumber(num) {
-    if (!num) return '0';
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    } else if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-    }
-    return num.toString();
-}
-
-function showNotification(message) {
-    // Create notification element
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        color: #165B33;
-        padding: 20px 30px;
-        border-radius: 10px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        z-index: 1000;
-        font-weight: 600;
-        animation: slideDown 0.3s ease;
-        border: 2px solid #FFD700;
-        max-width: 300px;
-        text-align: center;
-    `;
-    notification.textContent = message;
-    
-    document.body.appendChild(notification);
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideUp 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 3000);
-}
-
-// Add notification animations to document
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideDown {
-        from {
-            transform: translate(-50%, -100%);
-            opacity: 0;
-        }
-        to {
-            transform: translate(-50%, 0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideUp {
-        from {
-            transform: translate(-50%, 0);
-            opacity: 1;
-        }
-        to {
-            transform: translate(-50%, -100%);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// Initialize - Add sparkle cursor effect
-document.addEventListener('mousemove', (e) => {
-    if (Math.random() > 0.96) { // Réduire la fréquence
-        createSparkle(e.pageX, e.pageY);
-    }
-});
-
-function createSparkle(x, y) {
-    const sparkle = document.createElement('div');
-    sparkle.innerHTML = '✨';
-    sparkle.style.cssText = `
-        position: absolute;
-        left: ${x}px;
-        top: ${y}px;
-        pointer-events: none;
-        font-size: ${Math.random() * 10 + 10}px;
-        z-index: 9999;
-        animation: sparkleFloat 1s ease-out forwards;
-    `;
-    document.body.appendChild(sparkle);
-    
-    setTimeout(() => sparkle.remove(), 1000);
-}
-
-const sparkleStyle = document.createElement('style');
-sparkleStyle.textContent = `
-    @keyframes sparkleFloat {
-        to {
-            transform: translateY(-30px);
-            opacity: 0;
-        }
-    }
-`;
-document.head.appendChild(sparkleStyle);
-
-// Test API connection on load
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch('/api/health');
-        if (response.ok) {
-            console.log('🎄 Christmas Playlist Generator Ready! 🎄');
-        }
-    } catch (error) {
-        console.warn('API connection test failed:', error.message);
-    }
-});
+// Démarrer l'application quand le DOM est chargé
+document.addEventListener('DOMContentLoaded', initializeApp);
