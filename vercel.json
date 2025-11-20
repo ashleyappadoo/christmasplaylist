@@ -8,6 +8,13 @@
   ],
   "routes": [
     {
+      "src": "/(robots.txt|sitemap.xml|sitemap_en.xml|preview.png)",
+      "headers": {
+        "Cache-Control": "public, max-age=0, must-revalidate"
+      },
+      "dest": "/public/$1"
+    },
+    {
       "src": "/(.*)",
       "dest": "/server.js"
     }
