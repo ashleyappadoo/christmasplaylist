@@ -572,7 +572,7 @@ body {
 .playlist-card:nth-child(6) { animation-delay: 0.6s; }
 
 /* Adsterra native banner responsive wrapper */
-.native-ad-wrapper {
+/*.native-ad-wrapper {
     width: 100%;
     max-width: 420px;
     margin-left: auto;
@@ -583,5 +583,16 @@ body {
     .native-ad-wrapper {
         max-width: 728px;
     }
+}*/
+.native-ad-wrapper {
+    max-width: 400px;
+    margin: 0 auto;
 }
+
+@media (max-width: 768px) {
+    .native-ad-wrapper {
+        max-width: 320px;
+    }
+}
+
 
