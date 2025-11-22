@@ -585,9 +585,3 @@ body {
     }
 }
 
-/* Limite Adsterra à 1 seule publicité sur mobile */
-@media (max-width: 768px) {
-    #container-6ca8b43db4ef811e2abd15c361f7da41 > div:nth-child(n+2){
-        display: none !important;
-    }
-}
