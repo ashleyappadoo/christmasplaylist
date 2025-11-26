@@ -314,3 +314,30 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.warn('API connection test failed:', error.message);
     }
 });
+
+// --- Modal System ---
+function openModal(id) {
+    document.getElementById(id).style.display = "block";
+}
+
+function closeModal(id) {
+    document.getElementById(id).style.display = "none";
+}
+
+document.getElementById("openLegal").onclick = () => openModal("legalModal");
+document.getElementById("openContact").onclick = () => openModal("contactModal");
+
+// Handle close buttons
+document.querySelectorAll(".close-modal").forEach(btn => {
+    btn.onclick = () => closeModal(btn.dataset.close);
+});
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    document.querySelectorAll(".modal").forEach(modal => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+};
+
