@@ -226,7 +226,57 @@
         <footer class="footer">
             <p>🎄 Joyeux Noël 🎄</p>
             <p class="footer-note">Ce site utilise les données de Spotify et Deezer pour vous proposer les meilleures playlists de Noël</p>
+            <div class="footer-links">
+              <a href="#" id="openLegal">Mentions légales</a>
+              <span class="footer-separator">•</span>
+              <a href="#" id="openContact">Contact</a>
+            </div>
         </footer>
+        <!-- Modal Mentions Légales -->
+<div id="legalModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" data-close="legalModal">&times;</span>
+        <h2>Mentions légales</h2>
+        <div class="modal-text">
+            <!-- MENTIONS LÉGALES GÉNÉRÉES -->
+            <p><strong>Éditeur du site :</strong><br>
+            Christmas Playlist Generator<br>
+            Propriétaire : Ashley Appadoo<br>
+            Email : contact@christmas-playlist.com</p>
+
+            <p><strong>Hébergement :</strong><br>
+            Vercel Inc.<br>
+            440 N Barranca Ave #4133, Covina, CA 91723, USA<br>
+            https://vercel.com</p>
+
+            <p><strong>Propriété intellectuelle :</strong><br>
+            L’ensemble du contenu présent sur le site (textes, images, code) est protégé par les lois françaises et internationales relatives à la propriété intellectuelle. Toute reproduction non autorisée est interdite.</p>
+
+            <p><strong>Responsabilité :</strong><br>
+            Le site propose des playlists basées sur les API Spotify et Deezer. Christmas Playlist Generator n’est pas affilié à ces services et ne peut être tenu responsable d’une indisponibilité ou modification de leurs API.</p>
+
+            <p><strong>Données personnelles :</strong><br>
+            Le site ne collecte aucune donnée personnelle nominative. Aucune information utilisateur n'est stockée.</p>
+
+            <p><strong>Cookies :</strong><br>
+            Le site peut utiliser des cookies publicitaires tiers (Adsterra). L’utilisateur peut les bloquer via son navigateur.</p>
+
+            <p><strong>Contact :</strong><br>
+            Pour toute demande : contact@christmas-playlist.com</p>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Contact -->
+<div id="contactModal" class="modal">
+    <div class="modal-content modal-large">
+        <span class="close-modal" data-close="contactModal">&times;</span>
+        <h2>Nous contacter</h2>
+        <iframe src="https://form.typeform.com/to/AfT18rVW"
+                style="width: 100%; height: 600px; border: none;"></iframe>
+    </div>
+</div>
+      
     </div>
 
     <!-- Script principal -->
